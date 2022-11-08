@@ -42,19 +42,39 @@ namespace SistemaCadastro
 
 
 
-
-
-
-
         private void Sistema_Load(object sender, EventArgs e)
         {
-         
+            ConectaBanco con = new ConectaBanco();
+            DataTable tabelaDados = new DataTable();
+            tabelaDados = con.listaGeneros();
+            cbGenero.DataSource = tabelaDados;
+            cbGenero.DisplayMember = "genero";
+            cbGenero.ValueMember = "idgenero";
+            lblMsgErro.Text = con.mensagem;
+            cbGenero.Text = "";
         }
+
 
 
         private void BtnConfirmaCadastro_Click_1(object sender, EventArgs e)
         {
-           
+            Banda b = new Banda();
+            b.Nome = txtnome.Text;
+            b.Genero = Convert.ToInt32(cbGenero.SelectedValue.ToString());
+            b.Integrantes = Convert.ToInt32(txtintegrantes.Text);
+            b.Ranking = Convert.ToInt32(txtranking.Text);
+            
+            // Enviar para o Banco
+            ConectaBanco conecta = new ConectaBanco();
+            bool retorno = conecta.insereBanda(b);
+            if (retorno)
+            {
+                MessageBox.Show("Dados Inseridos com Sucesso!");
+            }
+            else
+                lblMsgErro.Text = conecta.mensagem;
+            
+
         }
 
         private void txtBusca_TextChanged(object sender, EventArgs e)
@@ -82,6 +102,11 @@ namespace SistemaCadastro
         private void bntAddGenero_Click(object sender, EventArgs e)
         {
           
+        }
+
+        private void lblMsgErro_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
