@@ -255,6 +255,7 @@
             this.cbGenero.Name = "cbGenero";
             this.cbGenero.Size = new System.Drawing.Size(560, 29);
             this.cbGenero.TabIndex = 10;
+            this.cbGenero.SelectedIndexChanged += new System.EventHandler(this.cbGenero_SelectedIndexChanged);
             // 
             // txtranking
             // 
@@ -311,6 +312,7 @@
             this.txtnome.Name = "txtnome";
             this.txtnome.Size = new System.Drawing.Size(560, 29);
             this.txtnome.TabIndex = 9;
+            this.txtnome.TextChanged += new System.EventHandler(this.txtnome_TextChanged);
             // 
             // label3
             // 
